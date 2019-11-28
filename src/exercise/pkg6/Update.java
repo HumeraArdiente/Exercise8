@@ -123,10 +123,13 @@ public class Update extends javax.swing.JFrame {
     private void addbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addbtnActionPerformed
         // TODO add your handling code here:
         Application form = new Application();
-//        this.setVisible(false);
+        this.setVisible(false);
         form.setVisible(true);
     }//GEN-LAST:event_addbtnActionPerformed
 
+    public int getID(){
+        return Integer.parseInt(table.getValueAt(0, 0).toString());
+    }
     private void editbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editbtnActionPerformed
         // TODO add your handling code here:
         Application form = new Application();
@@ -146,6 +149,7 @@ public class Update extends javax.swing.JFrame {
                 form.setPhoto(table.getValueAt(row, 7).toString());
                 form.savebtn.setText("Update");
                 form.resetbtn.setText("Delete");
+                this.setVisible(false);
                 form.setVisible(true);
             }
         }
@@ -154,6 +158,7 @@ public class Update extends javax.swing.JFrame {
     private void searchbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchbtnActionPerformed
         // TODO add your handling code here:
         Search form = new Search();
+        this.setVisible(false);
         form.setVisible(true);
     }//GEN-LAST:event_searchbtnActionPerformed
 

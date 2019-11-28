@@ -118,7 +118,8 @@ public class Search extends javax.swing.JFrame {
         if((inputtxt.getText()).isEmpty()){
             JOptionPane.showMessageDialog(null, "Field is Empty!");
         }else{
-            if(row <= table.getRowCount() && row >= 0){
+//                JOptionPane.showMessageDialog(null, "" + table.getRowCount());
+            if(row < table.getRowCount() && row >= 0){
                 for(x = 0; x < 7; x++){
                     data[x] = table.getValueAt(row, x);
                 }

@@ -12,6 +12,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.Image;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;  
 /**
  *
  * @author Astigin
@@ -326,6 +327,14 @@ public class Application extends javax.swing.JFrame {
             if(savebtn.getText().compareTo("Save") == 0){
                 JOptionPane.showMessageDialog(null, "Data Saved!");
                 model.addRow(d);
+                try{  
+                    Class.forName("com.mysql.jdbc.Driver");  
+                    Connection con=DriverManager.getConnection(  
+                    "jdbc:mysql://localhost:8080/exercise8","root","");    
+                    Statement stmt=con.createStatement();  
+                    ResultSet rs=stmt.executeQuery("insert into form ('ID', 'Fname', 'Lname', 'Bdate', 'Email', 'Contact', 'Address', 'Img')" + " values ('"+fnametxt.getText()+"', '"+lnametxt.getText()+"', '"+bdatetxt.getText()+"', '"+emailtxt.getText()+"', '"+contacttxt.getText()+"', '"+addresstxt.getText()+"', '" + imagepath + "')"); 
+                    con.close();  
+                }catch(Exception e){ System.out.println(e);}  
             }else if(savebtn.getText().compareTo("Update") == 0) {
                 JOptionPane.showMessageDialog(null, "Data Updated!");
                 row = table.getSelectedRow();
@@ -333,6 +342,15 @@ public class Application extends javax.swing.JFrame {
 //                for(col = 1; col <= 8; col++){
 //                    table.setValueAt(d[col], row, col);
 //                }
+                try{  
+                    Class.forName("com.mysql.jdbc.Driver");  
+                    Connection con=DriverManager.getConnection(  
+                    "jdbc:mysql://localhost:8080/exercise8","root","");    
+                    Statement stmt=con.createStatement();  
+                    int id = data.getID();
+                    ResultSet rs=stmt.executeQuery("update form 'Fname' = "+fnametxt.getText()+", 'Lname' = "+lnametxt.getText()+", 'Bdate' = "+bdatetxt.getText() +", 'Email' = "+emailtxt.getText()+", 'Contact' = "+contacttxt.getText()+", 'Address' = "+addresstxt.getText()+", 'Img' = "+imagepath+" where ID = " + id); 
+                    con.close();  
+                }catch(Exception e){ System.out.println(e);}  
             }
             this.setVisible(false);
             data.setVisible(true);
